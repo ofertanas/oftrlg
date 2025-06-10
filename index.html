@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivendo o Amor que Transforma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 0; /* Remover padding-top do body */
+        }
+
+        /* Barra de rolagem animada */
+        .animated-bar {
+            position: relative; /* Alterado para relative para não fixar no topo */
+            width: 100%;
+            height: 30px; /* Diminuído a altura */
+            background: linear-gradient(90deg, #FF6B35, #FFD700, #FF6B35);
+            background-size: 200% 100%;
+            animation: slideBar 3s linear infinite;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px; /* Diminuído a fonte */
+            text-align: center;
+            overflow: hidden;
+        }
+
+        @keyframes slideBar {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .animated-bar-text {
+            white-space: nowrap;
+            animation: scrollText 15s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Notificação de compra */
+        .purchase-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            max-width: 300px;
+        }
+
+        .purchase-notification.show {
+            transform: translateX(0);
+        }
+
+        .purchase-notification .check-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Botão de garantia */
+        .guarantee-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 998;
+            transition: transform 0.3s ease;
+        }
+
+        .guarantee-button:hover {
+            transform: scale(1.1);
+        }
+
+        .guarantee-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+
+        .guarantee-text {
+            font-size: 8px;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        /* Header com contador */
+        .header-banner {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 10px 0; /* Diminuído o padding */
+            text-align: center;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Diminuído o gap */
+            flex-wrap: wrap;
+        }
+
+        .countdown-title {
+            font-size: 1.2rem; /* Diminuído a fonte */
+            font-weight: bold;
+            margin-right: 10px; /* Diminuído a margem */
+        }
+
+        .countdown {
+            display: flex;
+            gap: 5px; /* Diminuído o gap */
+            align-items: center;
+        }
+
+        .countdown-item {
+            background: white;
+            color: #333;
+            padding: 5px 10px; /* Diminuído o padding */
+            border-radius: 5px; /* Diminuído o border-radius */
+            font-weight: bold;
+            font-size: 1rem; /* Diminuído a fonte */
+            min-width: 40px; /* Diminuído o min-width */
+            text-align: center;
+        }
+
+        .countdown-separator {
+            color: white;
+            font-size: 1.5rem; /* Diminuído a fonte */
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem; /* Diminuído a fonte */
+            color: #ccc;
+            margin-top: 2px; /* Diminuído a margem */
+        }
+
+        /* Seção principal */
+        .hero-section {
+            background: linear-gradient(135deg, #DAA520, #FFD700);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            max-width: 700px;
+            height: 350px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FF6B35, #FF8E53);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 15px;
+        }
+
+        /* Seção O que é essa jornada */
+        .journey-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .journey-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .journey-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .journey-text {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            border: 1px solid black;
+        }
+
+        .products-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.1);
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Seção O que você recebe */
+        .receive-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .receive-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .receive-list {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid black;
+        }
+
+        .receive-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .receive-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-icon {
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Seção Além disso */
+        .bonus-intro-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .bonus-intro-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .bonus-intro-list {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid black;
+        }
+
+        .urgency-section {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .urgency-title {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Seção de depoimentos */
+        .testimonials-section {
+            background: #2c2c2c;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .testimonials-title {
+            font-size: 2.5rem;
+            color: #FF6B35;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .stars {
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 40px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .whatsapp-chat {
+            background: #e5ddd5;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #075e54;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 15px -20px;
+            color: white;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .chat-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .chat-status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.sent {
+            background: #dcf8c6;
+            margin-left: auto;
+            color: #333;
+        }
+
+        .message.received {
+            background: white;
+            margin-right: auto;
+            color: #333;
+        }
+
+        .message-time {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        /* Seção Vantagens */
+        .advantages-section {
+            background: #000;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .advantages-section .container {
+            max-width: 1000px;
+        }
+
+        .advantages-section h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .advantage-item {
+            background: #1a1a1a;
+            padding: 0;
+            border-radius: 15px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .advantage-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #FF6B35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .advantage-content {
+            padding: 30px;
+        }
+
+        .advantage-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .advantage-text {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .advantage-button {
+            background: linear-gradient(135deg, #FF6B35, #FF8E53);
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+        }
+
+        .advantage-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Seção Bônus */
+        .bonus-section {
+            background: #000;
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .bonus-section .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Layout: texto à esquerda, bônus à direita */
+            gap: 50px;
+            align-items: flex-start;
+            max-width: 1200px;
+        }
+
+        .bonus-content-left {
+            text-align: left;
+        }
+
+        .bonus-content-left h2 {
+            font-size: 2.8rem;
+            color: #FF6B35;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .bonus-content-left p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .bonus-content-left .cta-button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .bonus-item {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .bonus-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #FF6B35;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .bonus-title {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .bonus-text {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Seção de Preço */
+        .price-section {
+            background: #2c2c2c;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .price-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .price-card h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .price-countdown-offer {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .price-countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .price-countdown-item {
+            background: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #FFD700;
+            text-align: center;
+        }
+
+        .price-countdown-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: #aaa;
+        }
+
+        .product-image-placeholder {
+            width: 180px;
+            height: 250px;
+            background: #555;
+            border-radius: 10px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .current-price {
+            font-size: 3.5rem;
+            color: #FF6B35;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .installment-price {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .payment-icon-placeholder {
+            width: 50px;
+            height: 30px;
+            background: #555;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #000;
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .faq-section .container {
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .faq-title-left {
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid black;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #333;
+        }
+
+        .faq-question:hover {
+            background: #444;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #1a1a1a;
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer p {
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-social-icons {
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .journey-content {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus-section .container {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-section .container {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-title-left {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .purchase-notification {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10px;
+            }
+
+            .guarantee-button {
+                right: 10px;
+                bottom: 10px;
+                width: 70px;
+                height: 70px;
+            }
+
+            .guarantee-number {
+                font-size: 20px;
+            }
+
+            .guarantee-text {
+                font-size: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra animada no topo -->
+    <div class="animated-bar">
+        <span class="animated-bar-text">OFERTA IMPERDÍVEL! GARANTA JÁ O SEU ACESSO COM DESCONTO!</span>
+    </div>
+
+    <!-- Notificação de compra (oculta por padrão) -->
+    <div class="purchase-notification" id="purchaseNotification">
+        <span class="check-icon">✔</span>
+        <span id="purchaserName"></span> acabou de comprar
+    </div>
+
+    <!-- Botão de garantia -->
+    <a href="#" class="guarantee-button">
+        <span class="guarantee-number">7</span>
+        <span class="guarantee-text">DIAS DE GARANTIA</span>
+    </a>
+
+    <!-- Header com contador -->
+    <header class="header-banner">
+        <div class="container">
+            <div class="countdown-container">
+                <span class="countdown-title">OFERTA DISPONÍVEL ATÉ:</span>
+                <div class="countdown" id="headerCountdown">
+                    <div class="countdown-item"><span id="headerDays">00</span><span class="countdown-label">dias</span></div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item"><span id="headerHours">00</span><span class="countdown-label">horas</span></div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item"><span id="headerMinutes">00</span><span class="countdown-label">min</span></div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item"><span id="headerSeconds">00</span><span class="countdown-label">seg</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção principal -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="video-placeholder">[VÍDEO AQUI]</div>
+                <div class="hero-text">
+                    <h1 class="hero-title">Vivendo o Amor que Transforma</h1>
+                    <a href="#" class="cta-button">QUERO MEU ACESSO AGORA!</a>
+                    <p class="small-text">Não ignore esse chamado. É o próprio Deus tocando seu coração.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção O que é essa jornada -->
+    <section class="journey-section">
+        <div class="container">
+            <div class="journey-content">
+                <div class="journey-text">
+                    <h2 class="journey-title">O que é Vivendo o Amor que Transforma?</h2>
+                    <p>Vivendo o Amor que Transforma é um guia prático e espiritual que o conduzirá por uma jornada de 21 dias para restaurar a sua paz interior e fortalecer a sua conexão com o divino. Através de ensinamentos profundos e exercícios diários, você aprenderá a aplicar princípios transformadores na sua vida, cultivando clareza, equilíbrio e força interior, mesmo em tempos de caos.</p>
+                    <p>Este manual é 100% aplicável à sua vida, adaptando os ensinamentos para a sua realidade, sem complicações. É uma transformação inteligente que o ajudará a alcançar equilíbrio, disciplina e clareza com um guia de alto valor, por uma fração do custo de mentorias ou cursos.</p>
+                </div>
+                <div class="products-placeholder">[IMAGEM DO PRODUTO AQUI]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção O que você recebe -->
+    <section class="receive-section">
+        <div class="container">
+            <h2 class="receive-title">O que você recebe ao adquirir Vivendo o Amor que Transforma:</h2>
+            <div class="receive-list">
+                <div class="receive-item"><span class="check-icon">✔</span> Guia completo "Vivendo o Amor que Transforma" em formato digital.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Acesso a exercícios práticos para cada um dos 21 dias.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Ferramentas para cultivar a paz espiritual e o equilíbrio emocional.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Suporte para aplicar os ensinamentos no seu dia a dia.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Conteúdo exclusivo para aprofundar a sua jornada espiritual.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Além disso -->
+    <section class="bonus-intro-section">
+        <div class="container">
+            <h2 class="bonus-intro-title">Além disso, você terá acesso a:</h2>
+            <div class="bonus-intro-list">
+                <div class="receive-item"><span class="check-icon">✔</span> Comunidade exclusiva para partilha e apoio.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Atualizações e conteúdos adicionais periodicamente.</div>
+                <div class="receive-item"><span class="check-icon">✔</span> Acesso vitalício ao material.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de urgência (barra animada no meio da página) -->
+    <div class="animated-bar">
+        <span class="animated-bar-text">OFERTA IMPERDÍVEL! GARANTA JÁ O SEU ACESSO COM DESCONTO!</span>
+    </div>
+
+    <!-- Seção de depoimentos -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="testimonials-title">O que estão dizendo sobre essa Jornada:</h2>
+            <div class="stars">★★★★★</div>
+            <div class="testimonials-grid">
+                <div class="whatsapp-chat">
+                    <div class="chat-header">
+                        <div class="chat-avatar">N</div>
+                        <div>
+                            <div class="chat-name">Neide</div>
+                            <div class="chat-status">online</div>
+                        </div>
+                    </div>
+                    <div class="message received">quanto cresceu espiritualmente. Isso vai aumentar a sua fé. <span class="message-time">09:02</span></div>
+                    <div class="message received">Bom dia 🙏 Neide<br>Estamos felizes em saber que está participando dessa jornada de 21 dias com o Amor que Transforma. Como tem sido para você até agora? <span class="message-time">09:08</span></div>
+                    <div class="message sent">Você <span class="message-time">12:51</span></div>
+                    <div class="message received">Bom dia 🙏<br>Estou muito abençoada com essa jornada e toda orientação dada por Deus 🙏<span class="message-time">12:51</span></div>
+                    <div class="message sent">Que benção, Neide 🙏 <span class="message-time">13:01</span></div>
+                    <div class="message received">A proposta sempre foi essa: Levar as pessoas a ter mais comunhão com Deus de forma prática e real 🙏<span class="message-time">13:04</span></div>
+                    <div class="message sent">Muito obrigado por compartilhar sua experiência 🙏 <span class="message-time">13:06</span></div>
+                </div>
+                <div class="whatsapp-chat">
+                    <div class="chat-header">
+                        <div class="chat-avatar">A</div>
+                        <div>
+                            <div class="chat-name">André</div>
+                            <div class="chat-status">online</div>
+                        </div>
+                    </div>
+                    <div class="message received">Oi André! Tudo bem?<br>Como tem sido a sua experiência na jornada? Tem sentido alguma diferença? <span class="message-time">12:52</span></div>
+                    <div class="message sent">Me sentia triste o tempo todo.<br>Oprimido, como se estivesse preso por dentro 😔 <span class="message-time">12:54</span></div>
+                    <div class="message received">Mas quando entrei nessa jornada, algo começou a mudar.<br>Cada dia me dava ânimo, esperança e luz. <span class="message-time">12:56</span></div>
+                    <div class="message sent">Que bom ouvir isso 🙏 <span class="message-time">12:58</span></div>
+                    <div class="message received">Ainda estou no processo...<br>Mas me sinto bem melhor 😊<br>Tenho certeza que irei vencer agora. <span class="message-time">13:00</span></div>
+                    <div class="message sent">Glória a Deus 🙏<br>É exatamente isso: um passo por dia, um Salmo por vez.<br>Estamos juntos com você nessa jornada 🙏 <span class="message-time">13:02</span></div>
+                </div>
+            </div>
+            <a href="#" class="cta-button">COMPRAR AGORA!</a>
+        </div>
+    </section>
+
+    <!-- Seção Vantagens -->
+    <section class="advantages-section">
+        <div class="container">
+            <h2>Manual "Vivendo o Amor que Transforma" pronto para ser aplicado uso imediato e 100% prático.</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-image-placeholder">[IMAGEM VANTAGEM 1 AQUI]</div>
+                    <div class="advantage-content">
+                        <h3 class="advantage-title">Sabedoria que atravessa os séculos.</h3>
+                        <p class="advantage-text">Descubra os princípios atemporais do amor que transforma e aprenda a cultivar clareza, equilíbrio e força interior mesmo em tempos de caos.</p>
+                        <a href="#" class="advantage-button">VER MATERIAIS</a>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-image-placeholder">[IMAGEM VANTAGEM 2 AQUI]</div>
+                    <div class="advantage-content">
+                        <h3 class="advantage-title">Fortaleça sua mente. Inspire quem caminha ao seu lado.</h3>
+                        <p class="advantage-text">O amor que transforma não transforma apenas você, ele muda seu exemplo, sua presença e seu impacto em quem te rodeia.</p>
+                        <a href="#" class="advantage-button">VER MATERIAIS</a>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-image-placeholder">[IMAGEM VANTAGEM 3 AQUI]</div>
+                    <div class="advantage-content">
+                        <h3 class="advantage-title">Paz silenciosa. Mudança visível.</h3>
+                        <p class="advantage-text">A verdadeira revolução começa dentro de você. Aprenda a aplicar o amor que transforma na rotina, com constância, propósito e direção.</p>
+                        <a href="#" class="advantage-button">VER MATERIAIS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Bônus -->
+    <section class="bonus-section">
+        <div class="container">
+            <div class="bonus-content-left">
+                <h2>Bônus Exclusivos ao Adquirir Agora:</h2>
+                <p>SOMENTE OS 100 PRIMEIROS</p>
+                <a href="#" class="cta-button">COMPRAR AGORA!</a>
+            </div>
+            <div class="bonus-grid">
+                <div class="bonus-item">
+                    <div class="bonus-image-placeholder">[IMAGEM BÔNUS 1 AQUI]</div>
+                    <h3 class="bonus-title">Guia "Restaurando a Paz Espiritual"</h3>
+                    <p class="bonus-text">Um guia aprofundado para a sua jornada de 21 dias, com insights e práticas adicionais para aprofundar a sua paz interior.</p>
+                </div>
+                <div class="bonus-item">
+                    <div class="bonus-image-placeholder">[IMAGEM BÔNUS 2 AQUI]</div>
+                    <h3 class="bonus-title">7 Orações Poderosas para a Transformação</h3>
+                    <p class="bonus-text">Descubra 7 orações poderosas selecionadas para momentos de crise, medo, luto ou decisões difíceis. Com explicações claras e aplicação prática, este guia é uma bússola espiritual para orar com profundidade e fé mesmo quando as palavras faltam.</p>
+                </div>
+                <div class="bonus-item">
+                    <div class="bonus-image-placeholder">[IMAGEM BÔNUS 3 AQUI]</div>
+                    <h3 class="bonus-title">Checklist de Esperança: 20 Mensagens para os Dias Mais Difíceis</h3>
+                    <p class="bonus-text">Um guia prático e emocional para quem está enfrentando dor, perdas ou momentos de confusão. Este checklist reúne 20 mensagens inspiradas para trazer consolo, clareza e fé nos dias em que tudo parece desmoronar. Uma fonte rápida de socorro espiritual quando você mais precisa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Preço -->
+    <section class="price-section">
+        <div class="container">
+            <div class="price-card">
+                <h2>Vivendo o Amor que Transforma</h2>
+                <div class="price-countdown-offer">Oferta disponível até: 15/06</div>
+                <div class="price-countdown-container">
+                    <div class="price-countdown-item"><span id="priceDays">00</span><span>dias</span></div>
+                    <div class="price-countdown-item"><span id="priceHours">00</span><span>horas</span></div>
+                    <div class="price-countdown-item"><span id="priceMinutes">00</span><span>min</span></div>
+                    <div class="price-countdown-item"><span id="priceSeconds">00</span><span>seg</span></div>
+                </div>
+                <div class="product-image-placeholder">[IMAGEM DO PRODUTO AQUI]</div>
+                <div class="old-price">DE R$ 197,00 POR APENAS 10X DE</div>
+                <div class="current-price">R$ 15,00</div>
+                <div class="installment-price">OU NO VALOR À VISTA POR R$ 15,00</div>
+                <a href="#" class="cta-button">QUERO MEU ACESSO</a>
+                <div class="payment-icons">
+                    <div class="payment-icon-placeholder">VISA</div>
+                    <div class="payment-icon-placeholder">MASTERCARD</div>
+                    <div class="payment-icon-placeholder">AMEX</div>
+                    <div class="payment-icon-placeholder">PAYPAL</div>
+                    <div class="payment-icon-placeholder">G PAY</div>
+                    <div class="payment-icon-placeholder">APPLE PAY</div>
+                    <div class="payment-icon-placeholder">ELO</div>
+                    <div class="payment-icon-placeholder">PIX</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-title-left">F.A.Q</div>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">O que é Vivendo o Amor que Transforma?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Vivendo o Amor que Transforma é um guia prático e espiritual que o conduzirá por uma jornada de 21 dias para restaurar a sua paz interior e fortalecer a sua conexão com o divino.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Quem pode usar Vivendo o Amor que Transforma?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Qualquer pessoa que busca restaurar a paz espiritual, encontrar equilíbrio e fortalecer sua fé, independentemente de sua experiência anterior.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Por quanto tempo terei acesso ao manual?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Você terá acesso vitalício a todo o material de Vivendo o Amor que Transforma, incluindo futuras atualizações.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Quais formas de pagamento são aceitas?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Aceitamos diversas formas de pagamento, incluindo cartão de crédito (Visa, Mastercard, Amex), PayPal, Google Pay, Apple Pay, Elo e Pix.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qual o formato do manual?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>O manual "Vivendo o Amor que Transforma" está disponível em formato digital (e-book), acessível em qualquer dispositivo.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como eu vou receber esse guia?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Após a confirmação do pagamento, você receberá um e-mail com as instruções e o link para download do seu guia e bônus exclusivos.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">Vivendo o Amor que Transforma</div>
+            <p>Copyright © 2023. Vivendo o Amor que Transforma. Todos os direitos reservados.</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+            <p>"Este site não é afiliado ou endossado por Facebook™ ou Instagram™."</p>
+            <div class="footer-social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contador regressivo do cabeçalho
+        function updateHeaderCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 5); // 5 dias a partir de hoje
+            endDate.setHours(endDate.getHours() + 14);
+            endDate.setMinutes(endDate.getMinutes() + 47);
+            endDate.setSeconds(endDate.getSeconds() + 0);
+
+            const countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate.getTime() - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("headerDays").innerText = String(days).padStart(2, '0');
+                document.getElementById("headerHours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("headerMinutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("headerSeconds").innerText = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("headerCountdown").innerHTML = "OFERTA EXPIRADA";
+                }
+            }, 1000);
+        }
+
+        // Contador regressivo da seção de preço
+        function updatePriceCountdown() {
+            const endDate = new Date('2025-06-15T23:59:59'); // Data fixa para 15/06/2025
+
+            const countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate.getTime() - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("priceDays").innerText = String(days).padStart(2, '0');
+                document.getElementById("priceHours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("priceMinutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("priceSeconds").innerText = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("priceCountdown").innerHTML = "OFERTA EXPIRADA";
+                }
+            }, 1000);
+        }
+
+        // Notificações de compra
+        const purchaserNames = ["Maria", "João", "Ana", "Pedro", "Carla", "Fernando", "Mariana", "Rafael"];
+
+        function showPurchaseNotification() {
+            const notification = document.getElementById('purchaseNotification');
+            const purchaserNameElement = document.getElementById('purchaserName');
+
+            const randomName = purchaserNames[Math.floor(Math.random() * purchaserNames.length)];
+            purchaserNameElement.innerText = randomName;
+
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000); // Notificação visível por 5 segundos
+        }
+
+        // Alternar FAQ
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                const faqAnswer = faqItem.querySelector('.faq-answer');
+
+                faqItem.classList.toggle('active');
+
+                if (faqItem.classList.contains('active')) {
+                    faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+                } else {
+                    faqAnswer.style.maxHeight = null;
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHeaderCountdown();
+            updatePriceCountdown();
+            setInterval(showPurchaseNotification, Math.random() * (15000 - 8000) + 8000); // A cada 8-15 segundos
+        });
+    </script>
+</body>
+</html>
+
